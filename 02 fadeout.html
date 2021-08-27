@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>改變網站內容</title>
+    <style>
+        #circle{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #E86D5E;
+        }
+        #circle2{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #735ee8;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="circle"></div>
+    <button class="b1">清除</button>
+    <button class="b2">顯示</button>
+    
+    
+
+    <script src="./JS/jquery-3.6.0.js"></script>
+    <script>
+
+        $('.b1').click(function(){
+            //fadeOut(3000),fadeOut('slow'),fadeOut('fast')都可設定消失的速度
+            $('#circle').fadeOut(3000);
+        })
+        $('.b2').click(function(){
+            $('#circle').fadeIn();
+        })
+        
+
+    </script>
+</body>
+</html>
