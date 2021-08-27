@@ -12,13 +12,21 @@
             border-radius: 50%;
             background-color: #E86D5E;
         }
+        #circle2{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #735ee8;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div id="circle"></div>
+    <div id="circle2"></div>
     <p>Hello JQuery</p>
 
-
+    
 
     <script src="./JS/jquery-3.6.0.js"></script>
     <script>
@@ -26,6 +34,12 @@
             //JS在html中加入文字用innerHTML，JQ是用html()
             $('p').html('JQuery Learning~');
         })
+
+        $('#circle2').hover(function(){
+            $('#circle2').css('background','green');
+        })
+
+
     </script>
 </body>
 </html>
