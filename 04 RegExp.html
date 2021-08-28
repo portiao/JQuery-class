@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegExp 正規表達式</title>
+</head>
+<body>
+
+    <script src="./JS/jquery-3.6.0.js"></script>
+    <script>
+        let string = "Hello Portia";
+        //在後面加入i 代表不被大小寫限制
+        //在後面使用g 代表global (全部查找)
+        let regex = /porTia/i;
+        //match()用於查找
+        let result = string.match(regex);
+        alert(result);
+    </script>
+</body>
+</html>
