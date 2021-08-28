@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>carousel</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        .wrap{
+            max-width: 800px;
+            height: 400px;
+            /* hidden式最後才做得 */
+            overflow: hidden;
+            position: relative;
+        }
+
+        ul.train{
+            display: flex;
+            width: 4000px;
+            list-style: none;
+            padding:0;
+            transform: translateX(0px);
+            transition: .5s;
+        }
+
+        li.car img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+        }
+        
+        .silder-dots{
+            display: flex;
+            list-style: none;
+            padding:0;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .silder-dots li{
+            width: 40px;
+            height: 10px;
+            border: 2px solid #fff;
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <ul class="train">
+            <li class="car"><img src="./imgs/slide1.jpg" alt=""></li>
+            <li class="car"><img src="./imgs/slide2.jpg" alt=""></li>
+            <li class="car"><img src="./imgs/slide3.jpg" alt=""></li>
+            <li class="car"><img src="./imgs/slide4.jpg" alt=""></li>
+            <li class="car"><img src="./imgs/slide5.jpg" alt=""></li>
+        </ul>
+
+        <ul class="silder-dots">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+
+
+
+    <script src="./JS/jquery-3.6.0.js"></script>
+    <script>
+        $('.silder-dots li').hover(function(){
+            //知道目前hover 的是第幾的li
+            console.log('index:' ,$(this).index());
+            
+            //可以知道火車要移動多少距離
+            //0 ->0
+            //1 ->-800
+            //2 ->-1600
+            //3 ->-2400
+            //4 ->-3200
+            console.log('move x:', $(this).index() * -800);
+
+            //選取火車並修改css
+            $('ul.train').css('transform',`translateX( ${ $(this).index() *-800 }px)`);
+        });
+    </script>
+</body>
+</html>
