@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>驗證表單</title>
+    <style>
+        body{
+            background-color: #F2F3F5;
+        }
+
+        #container{
+            padding-top: 60px;
+            width: 600px;
+            margin: auto;
+            font-family: "Helvetica Neue","Helvetica","Arial";
+
+        }
+        .input-style{
+            border-radius: 5px;
+            border:1px solid grey;
+            font-size: 1.1em;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .input-width{
+            width: 300px;
+            height: 40px;
+
+        }
+
+        #email-gender{
+            width: 323px;
+            height: 40px;
+        }
+
+        label{
+            width: 200px;
+            float: left;
+            font-size: 1.2en;
+            padding-top: 8px;
+        }
+
+        #email-message{
+            width: 500px;
+            padding-top: 15px;
+        }
+        
+        #submitButton{
+            background-color: #AA47BC;
+            color: white;
+            width: 523px;
+            height: 40px;
+        }
+
+        #error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+
+        <form id="validationForm">
+            <label for="email-name">姓 名</label>
+            <input id="email-name" class="input-style input-width" type="text" name="name" placeholder="請輸入姓名">
+
+            <label for="email-address">電子郵件</label>
+            <input id="email-address" class="input-style input-width" type="text" name="email" placeholder="請輸入電子郵件">
+
+            <label for="email-gender">性 別</label>
+            <select name="gender" id="email-gender" class="input-style">
+                <option value="male">男</option>
+                <option value="female">女</option>
+            </select>
+
+            <label for="pass1">密 碼</label>
+            <input id="pass1" class="input-style input-width" type="password" name="pass1" placeholder="請輸入密碼">
+
+            <label for="pass2"></label>
+            <input id="pass2" class="input-style input-width" type="password" name="pass2" placeholder="請再輸入一次密碼">
+
+            <textarea id="email-message" class="input-style" name="message" cols="80" rows="8" placeholder="請描述狀況"></textarea>
+
+            <button id="submitButton" class="input-style" type="submit" name="submit">送出郵件</button>
+        </form>
+
+        <div id="error">
+
+        </div>
+    </div>
+
+
+
+    <script src="./JS/jquery-3.6.0.js"></script>
+    <script>
+        $('#validationForm').submit(function(event){
+
+            let errorMessage = "";
+
+            //preventDefault() 不會停止事件傳遞。
+            //若要停止事件繼續傳遞，要使用 Event.stopPropagation() 方法
+            event.preventDefault();
+
+            let name = $('#email-name').val();
+            let email = $('#email-address').val();
+            let pass1 = $('#pass1').val();
+            let pass2 = $('#pass2').val();
+            let message = $('#email-message').val();
+
+            function isVailEmailAddress(emailAddress){
+                //用正規表達式驗證e-mail格式 是否正確
+                let pattern = /^\b[a-zA-Z0-9-]+@[A-Z0-9]+\.com\b/i ;
+
+                return pattern.test(emailAddress);
+            }
+            
+            //每個欄位都須填寫的判斷式
+            if(name == "" || email == "" || pass1 =="" || pass2 =="" || message == ""){
+                errorMessage = "請輸入完整資訊.";
+
+            }else if(! isVailEmailAddress(email)){
+
+                errorMessage = "請輸入正確的郵件格式.";
+
+            }else if( pass1 != pass2){
+
+                errorMessage = "請確認輸入的密碼";
+            }
+
+            if (errorMessage == ""){
+                $('#error').html('郵件已送出!');
+                $('#error').css('color','green');
+            }else{
+                $('#error').html(errorMessage);
+                $('#error').css('color','red');
+            }
+        })
+    </script>
+</body>
+</html>
