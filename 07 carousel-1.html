@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carousel</title>
+    <style>
+      * {
+        margin: 0;
+      }
+      .wrap {
+        max-width: 800px;
+        height: 400px;
+        /* hidden式最後才做得 */
+        overflow: hidden;
+        position: relative;
+      }
+
+      ul.train {
+        display: flex;
+        width: 4000px;
+        list-style: none;
+        padding: 0;
+        transform: translateX(0px);
+        transition: 0.5s;
+      }
+
+      li.car img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .silder-dots {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .silder-dots li {
+        width: 40px;
+        height: 10px;
+        border: 2px solid #fff;
+        margin: 0 4px;
+      }
+      /* 設定初始值
+      .silder-dots li:nth-child(1){
+          background-color: #fff;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <ul class="train">
+        <li class="car"><img src="./imgs/slide1.jpg" alt="" /></li>
+        <li class="car"><img src="./imgs/slide2.jpg" alt="" /></li>
+        <li class="car"><img src="./imgs/slide3.jpg" alt="" /></li>
+        <li class="car"><img src="./imgs/slide4.jpg" alt="" /></li>
+        <li class="car"><img src="./imgs/slide5.jpg" alt="" /></li>
+      </ul>
+
+      <ul class="silder-dots">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <script src="./JS/jquery-3.6.0.js"></script>
+    <script>
+      let page = 0;
+
+      //再hover近來時要暫停時
+      let myIntervalID = '';
+      
+      function startInterval() {
+        myIntervalID = setInterval(() => {
+        page++;
+        //用判斷式到第五次時從0開始
+        if (page > 4) {
+          page = 0;
+        }
+
+        console.log("Hi", page);
+        $("ul.train").css("transform", `translateX( ${page * -800}px)`);
+        //讓白色框跟著畫面變動 ，使用eq()與page同步
+        $(".silder-dots li")
+          .eq(page)
+          .css("background", "#fff")
+          .siblings()
+          .css("background", "transparent");
+      }, 3000);
+      }
+
+      
+
+      $(".silder-dots li").hover(function () {
+        clearInterval(myIntervalID);
+        //知道目前hover 的是第幾的li
+        console.log("index:", $(this).index());
+
+        /**hover是看index，page是看setInterval,這樣會不同步
+         * 為了讓hover與page同步，所以就讓page = hover即可
+         */
+        page = $(this).index();
+
+        //可以知道火車要移動多少距離
+        //0 ->0
+        //1 ->-800
+        //2 ->-1600
+        //3 ->-2400
+        //4 ->-3200
+        console.log("move x:", $(this).index() * -800);
+
+        //選取火車並修改css
+        $("ul.train").css("transform",`translateX( ${$(this).index() * -800}px)`);
+        //除了我以外其他人都透明
+        $(this).css("background", "#fff").siblings().css("background", "transparent");
+        //hover離開時要再呼叫一次startInterval
+      },function(){
+        startInterval();
+      });
+
+      //設定初始值方法2
+      startInterval();
+      $('.silder-dots li').eq(0).css('background','#fff');
+
+
+      //每秒方式自動播放 輪播牆
+      //setInterval每多久做一次,"最少"多少毫秒觸發一次，極限最少4毫秒(面試考題)
+
+      //   setInterval(() => {
+      //     page++;
+      //     //用判斷式到第五次時從0開始
+      //     if (page > 4) {
+      //       page = 0;
+      //     }
+
+      //     console.log("Hi", page);
+      //     $("ul.train").css("transform", `translateX( ${page * -800}px)`);
+      //     //讓白色框跟著畫面變動 ，使用eq()與page同步
+      //     $(".silder-dots li").eq(page).css('background','#fff').siblings().css('background','transparent');
+
+      //   }, 3000);
+    </script>
+  </body>
+</html>
