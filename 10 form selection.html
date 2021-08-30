@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表選取</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <table class="table table-bordered mt-5">
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>Elon Musk</td>
+              <td>0912345678</td>
+              <td>Eon Musk@gmail.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>Mark Zuckerberg</td>
+              <td>0912345678</td>
+              <td>Mark Zuckerberg@gmail.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>Bill Gates</td>
+              <td>0912345678</td>
+              <td>Bill Gates@gmail.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>Larry Page</td>
+              <td>0912345678</td>
+              <td>Larry Page@gmail.com</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <script src="./JS/jquery-3.6.0.js"></script>
+      <script>
+          //方法一
+          // :checked 所有html內的勾選框 
+          $(":checkbox").click(function () {
+            $(":checked").parent().parent().css("background-color", "lightblue");
+            //:not() 反向的意思 ，:not(:checked) 沒有被勾選
+            $(":not(:checked)").parent().parent().css("background-color", "transparent");
+          });
+
+        //  //方法二
+        //  $('input[type="checkbox"]').click(function () {
+        //  // console.log('hi');
+        //  $('tr').css('background', 'transparent');
+        //  $('input:checked').closest('tr').css('background', 'lightblue');
+        //  });
+
+        //  //方法三
+        //  $('input[type="checkbox"]').click(function () {
+        //     // console.log('hi', $(this).attr('checked'));
+        //     // console.log('hi', $(this).prop('checked'));
+
+        //     if ($(this).prop('checked')) {
+        //         $(this).parent().parent().css('background', 'lightblue');
+        //     }
+        //     else {
+        //         $(this).parent().parent().css('background', 'transparent');
+        //     }
+
+        // });
+
+
+      </script>
+</body>
+</html>
