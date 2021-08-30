@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Selection</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <style>
+      img{
+        width: 100%;
+        border-radius: 50%;
+        /*設置一個透明的border在外 才不會再點擊時有圖片大小差異*/
+        border:5px solid transparent;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col"><img src="./imgs/person1.jpg" alt=""></div>
+        <div class="col"><img src="./imgs/person2.jpg" alt=""></div>
+        <div class="col"><img src="./imgs/person3.jpg" alt=""></div>
+        <div class="col"><img src="./imgs/person4.jpg" alt=""></div>
+        <div class="col"><img src="./imgs/person5.jpg" alt=""></div>
+      </div>
+    </div>
+
+
+    <script src="./JS/jquery-3.6.0.js"></script>
+    <script>
+        $('img').on('click',function(){
+          // console.log('hi',$(this));
+          //自己以外的都要變透明
+          $(this).css('border','5px solid red').parent().siblings().children().css('border','5px solid transparent');
+        })
+    </script>
+</body>
+</html>
