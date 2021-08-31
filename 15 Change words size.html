@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>針對頁籤標示改變字體大小</title>
+    <style>
+        .fontS {
+            font-size: .8rem;
+        }
+
+        .fontM {
+            font-size: 1rem;
+        }
+
+        .fontL {
+            font-size: 1.2rem;
+        }
+  </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-end">
+          <div class="btn-group">
+            <button class="small btn btn-info">S</button>
+            <button class="medium btn btn-info active">M</button>
+            <button class="large btn btn-info">L</button>
+          </div>
+        </div>
+        <div class="row">
+          <h2>jQuery</h2>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis vel
+            eligendi beatae placeat sapiente quidem, assumenda animi sint quisquam
+            molestiae inventore fugit illum neque aliquam voluptas amet nam cumque
+            soluta?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+            ratione quisquam voluptatem est velit dignissimos doloremque
+            consectetur debitis, nulla odio eaque exercitationem nostrum doloribus
+            ea maiores cum harum porro odit!
+          </p>
+        </div>
+      </div>
+  
+      <script src="./jQuery/jquery-3.6.0.js"></script>
+      <script>
+        //方法1
+        // $(".small").on("click", function () {
+        //   $("h2").css("font-size", "20px");
+        //   $("p").css("font-size", "12px");
+        //   $(this).addClass('active').siblings().removeClass('active');
+         
+        // });
+        // $(".medium").on("click", function () {
+        //   $("h2").css("font-size", "24px");
+        //   $("p").css("font-size", "16px");
+        //   $(this).addClass('active').siblings().removeClass('active');
+        // });
+        // $(".large").on("click", function () {
+        //   $("h2").css("font-size", "28px");
+        //   $("p").css("font-size", "18px");
+        //   $(this).addClass('active').siblings().removeClass('active');
+        // });
+  
+  
+        
+  
+        // 方法2
+        $('.btn').on('click', function () {
+              // console.log('hi S', $(this).is(':contains("S")'));
+              // console.log('hi M', $(this).is(':contains("M")'));
+              // console.log('hi L', $(this).is(':contains("L")'));
+  
+  
+              
+              //使用:contains() 尋找"內文"完全吻合文字
+              if ($(this).is(':contains("S")')) {
+                  $('p').removeClass().addClass('fontS');
+                  $(this).addClass('active').siblings().removeClass('active');
+              }
+  
+              if ($(this).is(':contains("M")')) {
+                  $('p').removeClass().addClass('fontM');
+                  $(this).addClass('active').siblings().removeClass('active');
+              }
+  
+              if ($(this).is(':contains("L")')) {
+                  $('p').removeClass().addClass('fontL');
+                  $(this).addClass('active').siblings().removeClass('active');
+              }
+  
+          });
+      </script>
+    
+</body>
+</html>
