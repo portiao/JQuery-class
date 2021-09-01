@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 元素在視窗的絕對位置  offset()</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>
+    <style>
+      body{
+        margin: 8px;
+      }
+      .height{
+        height: 1200px;
+        width: 100%;
+        background-color: #ccc;
+      }
+      .box{
+        width: 100px;
+        height: 100px;
+        background-color: #afa;
+        transition: 2s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="height"></div>
+    <div class="box"></div>
+    <div class="height"></div>
+    
+
+
+    <script src="./jQuery/jquery-3.6.0.js"></script>
+    <script>
+        console.log('box offset',$('.box').offset());
+        console.log('box offset',$('.box').offset().left);
+        console.log('box offset',$('.box').offset().top);
+
+        // 移動到網頁的 top:50px,left:100px 的"絕對位置"
+        // $('.box').offset({
+        //   top: '50',//數值為字串
+        //   left: '100'
+        // });
+
+        $(window).scroll(function(){
+          //查看滾輪的垂直位置
+          console.log('scrollTop',$(window).scrollTop());
+          // console.log('windowHeight',$(window).height());
+
+          //方法一
+          //用比較笨的方式先查看scrollTop位置，在下判斷式到指定位置變色
+          // if($(window).scrollTop() > 500){
+          //   $('.box').css('background','yellow');
+          // }
+          
+          //方法二(較為準確)
+          //當滾輪到box時，過300px 要變色為黃色
+          //使用者滑動的距離 > box在網頁的上方處 - window的高度
+          if( $(window).scrollTop() > ($('.box').offset().top-$(window).height()) +300 ){
+            $('.box').css('background','yellow');
+          }
+
+
+        });
+    </script>
+  </body>
+</html>
