@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex11</title>
+    <style>
+        body {
+            margin: 0;
+            /* vh: 可視區 (viewport) 的高度 (px) ，除以 100 ，等於 1vh */
+            height: 500vh;
+        }
+
+        .banner {
+            height: calc(100vh - 60px);
+            background: url(https://cdn.pixabay.com/photo/2021/06/27/20/32/lighthouse-6369963_960_720.jpg) no-repeat;
+            background-size: cover;
+        }
+
+        nav {
+            height: 60px;
+            background-color: lightgreen;
+            text-align: center;
+            color: rgb(159, 156, 156);
+            position: static;
+        }
+
+        nav.fixed {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner"></div>
+    <nav class="">Hello Nav</nav>
+
+    <script src="./JS/jquery-3.6.0.js"></script>
+
+    <script>
+      //先抓取原本的位置
+        let offsetTop = $('nav').offset().top;
+      //使用resize()偵測瀏覽器的大小變化
+        $(window).resize(function () {
+            console.log('hi', $(window).scrollTop());
+
+            //nav距離網頁頂端是多少?
+            offsetTop = $('nav').offset().top;
+            shouldNavFixed();
+        });
+
+        $(window).scroll(function () {
+            console.log('offsetTop', offsetTop);
+            console.log('window scrollTop', $(window).scrollTop());
+            shouldNavFixed();
+        });
+
+        function shouldNavFixed() {
+
+          //使用者滑動的距離 >= nav距離網頁頂端
+          //因為當使用者往下滑動數字會變大，因此超過導覽列後執行以下訊息
+            if ($(window).scrollTop() >= offsetTop) {
+                $('nav').addClass('fixed');
+            }
+            else {
+                $('nav').removeClass('fixed');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
