@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>position 相對位置</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>
+    <style>
+      .wrap{
+          /* position: relative; */
+          width: 800px;
+          height: 400px;
+          background-color: #ccc;
+          margin: 50px;
+          padding: 10px;
+      }
+      .box{
+          width: 200px;
+          height: 200px;
+          background-color: #afa;  
+      }
+      .box2{
+        background-color: #faf;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="wrap">
+        <div class="box"></div>
+        <div class="box box2"></div>
+    </div>
+
+    
+    <script src="./jQuery/jquery-3.6.0.js"></script>
+    <script>
+        console.log('position:',$('.box').position());
+        console.log('position:',$('.box2').position());
+       
+    </script>
+  </body>
+</html>
